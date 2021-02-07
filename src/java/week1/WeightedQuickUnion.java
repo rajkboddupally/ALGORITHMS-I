@@ -24,12 +24,12 @@ public class WeightedQuickUnion {
         return root(p) == root(q);
     }
 
-    public void union(int p, int q) {
+    public boolean union(int p, int q) {
         int pRoot = root(p);
         int qRoot = root(q);
 
         if (pRoot == qRoot)
-            return;
+            return false;
 
         if (sz[pRoot] > sz[qRoot]) {
             ids[qRoot] = pRoot;
@@ -39,6 +39,7 @@ public class WeightedQuickUnion {
             ids[pRoot] = qRoot;
             sz[qRoot] += sz[pRoot];
         }
+        return true;
     }
 
     private int root(int i) {
